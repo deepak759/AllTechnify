@@ -11,8 +11,10 @@ const userSchema = new mongoose.Schema({
     type:String,
     default:"https://i.pinimg.com/564x/81/8a/1b/818a1b89a57c2ee0fb7619b95e11aebd.jpg"
   }
-});
+},
+{timestamps:true}
+);
 
-const User = mongoose.model("users", userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;

@@ -29,10 +29,10 @@ try {
 //middleware for handling errors
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 404;
-  const errMessage = err.message || "something went wrong";
+  const message = err.message || "something went wrong";
   return res.status(statusCode).json({
     success: false,
-    errMessage,
+    message,
     statusCode,
   });
 });
