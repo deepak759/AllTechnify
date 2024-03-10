@@ -29,14 +29,14 @@ const blogSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      maxLength: 50,
+      
     },
     desc: {
       type: String,
       required: true,
       minLength: 5,
     },
-    images: {
+    imageURLs: {
       type: Array,
     },
     userRef: {

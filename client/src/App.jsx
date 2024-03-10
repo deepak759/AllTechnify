@@ -1,4 +1,4 @@
-import './App.css'
+
 
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import Home from './pages/Home.jsx';
@@ -10,16 +10,29 @@ import CreateBlog from './pages/blogs/CreateBlog.jsx';
 import PrivateRoute from './componenets/PrivateRote.jsx';
 import EditProduct from './pages/products/EditProduct.jsx';
 import EditBlog from './pages/blogs/EditBlog.jsx';
+import Header from './componenets/Header.jsx';
+import Footer from './componenets/Footer.jsx';
+import ShowBlogs from './pages/blogs/ShowBlogs.jsx';
+import ShowProducts from './pages/products/ShowProducts.jsx';
+import ReadBlog from './pages/blogs/ReadBlog.jsx';
+import BuyProduct from './pages/products/BuyProduct.jsx';
+
 
 export default function App() {
+
 
 
   return (
     
     <BrowserRouter>
+    <Header/>
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/signin' element={<SignIn  />} />
+        <Route path='/products' element={<ShowProducts />}/>
+        <Route path='/products/buy/:id' element={<BuyProduct />}/>
+        <Route path='/blogs' element={<ShowBlogs/>}/>
+        <Route path='/blogs/read/:id' element={<ReadBlog />}/>
         <Route path='/signup' element={<SignUp />} />
         <Route element={<PrivateRoute/> }>
         <Route path="/profile" element={<Profile />} />
@@ -30,6 +43,7 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
+      {/* <Footer/> */}
     </BrowserRouter>
    
   
