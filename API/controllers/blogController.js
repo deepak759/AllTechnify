@@ -62,12 +62,10 @@ export const deleteBlog = async (req, res, next) => {
 
 export const comment = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user.id);
-    const userName = user.name;
-    const content = req.body.content;
+    
     const id = req.params.id;
     const post = await Blog.findById(id);
-    post.comments.push({ userName, content });
+    post.comments.push( req.body );
     await post.save();
 
     res.json(post);

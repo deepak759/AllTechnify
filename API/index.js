@@ -6,7 +6,11 @@ import blogRouter from './routes/blogRoute.js';
 import productRouter from './routes/productRoute.js';
 import searchRouter from './routes/searchRoute.js';
 import mongoose from "mongoose";
+// import Stripe from "stripe";
 dotenv.config();
+
+
+// const stri=new Stripe(process.env.STRIPE_SECRET_KEY)
 
 const app = express();
 app.use(cookieParser());
@@ -16,6 +20,7 @@ app.use('/api/user',userRouter)
 app.use('/api/blogs',blogRouter)
 app.use('/api/product',productRouter)
 app.use('/api/search',searchRouter)
+
 
 
 

@@ -11,11 +11,12 @@ import PrivateRoute from './componenets/PrivateRote.jsx';
 import EditProduct from './pages/products/EditProduct.jsx';
 import EditBlog from './pages/blogs/EditBlog.jsx';
 import Header from './componenets/Header.jsx';
-import Footer from './componenets/Footer.jsx';
+import Footer from './componenets/footer/Footer.jsx';
 import ShowBlogs from './pages/blogs/ShowBlogs.jsx';
 import ShowProducts from './pages/products/ShowProducts.jsx';
 import ReadBlog from './pages/blogs/ReadBlog.jsx';
 import BuyProduct from './pages/products/BuyProduct.jsx';
+import DetailProduct from './pages/products/detailproduct/DetailProduct.jsx';
 
 
 export default function App() {
@@ -30,7 +31,8 @@ export default function App() {
         <Route path='/' element={<Home/>} />
         <Route path='/signin' element={<SignIn  />} />
         <Route path='/products' element={<ShowProducts />}/>
-        <Route path='/products/buy/:id' element={<BuyProduct />}/>
+        <Route path='/products/buy' element={<BuyProduct />}/>
+        <Route path='/products/detail/:id' element={<DetailProduct />}/>
         <Route path='/blogs' element={<ShowBlogs/>}/>
         <Route path='/blogs/read/:id' element={<ReadBlog />}/>
         <Route path='/signup' element={<SignUp />} />
@@ -43,7 +45,7 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
-      {/* <Footer/> */}
+      <Footer/>
     </BrowserRouter>
    
   

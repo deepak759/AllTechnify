@@ -8,7 +8,7 @@ export default function ProductCard({ item }) {
   
       <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <img
-          className="pb-4 w-full rounded-t-lg"
+          className="pb-4 w-full h-[270px] rounded-t-lg"
           src={imageURLs}
           alt="product image"
         />
@@ -24,10 +24,10 @@ export default function ProductCard({ item }) {
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-3xl font-bold text-gray-900 dark:text-white">
+            <span className="text-3xl font-bold  text-white">
               ${price}
             </span>
-            <Link to={`/products/buy/${_id}`}>Buy Now</Link>
+            <Link className="bg-blue-600 p-3 rounded-md" to={`/products/detail/${_id}`}>Buy Now</Link>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
 import "./style.css";
 const Footer = () => {
   return (
-    <footer className="footer  bottom-0  w-full">
+    <footer className="footer static mb-0 mt-20 bottom-0  w-full">
       <div className="container">
         <div className="row">
           <div className="footer-col">
@@ -47,16 +47,16 @@ const Footer = () => {
             <h4>online shop</h4>
             <ul>
               <li>
-                <a href="#">watch</a>
+                <a href="#">Courses</a>
               </li>
               <li>
-                <a href="#">bag</a>
+                <a href="#">Packages</a>
               </li>
               <li>
-                <a href="#">shoes</a>
+                <a href="#">Websites</a>
               </li>
               <li>
-                <a href="#">dress</a>
+                <a href="#">organize Events</a>
               </li>
             </ul>
           </div>
