@@ -4,7 +4,7 @@ import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import SignIn from './pages/authentication/SignIn.jsx';
 import SignUp from './pages/authentication/SignUp.jsx';
-import Profile from './pages/Profile.jsx';
+import Profile from './pages/profile/Profile.jsx';
 import CreateListing from './pages/products/CreateProduct.jsx';
 import CreateBlog from './pages/blogs/CreateBlog.jsx';
 import PrivateRoute from './componenets/PrivateRote.jsx';

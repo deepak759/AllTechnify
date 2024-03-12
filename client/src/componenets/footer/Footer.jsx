@@ -3,7 +3,7 @@
 import "./style.css";
 const Footer = () => {
   return (
-    <footer className="footer static mb-0 mt-20 bottom-0  w-full">
+    <footer className="footer  top-[70vh] mb-0 mt-20 bottom-0  w-full">
       <div className="container">
         <div className="row">
           <div className="footer-col">

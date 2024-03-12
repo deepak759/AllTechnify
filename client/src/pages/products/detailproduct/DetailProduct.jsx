@@ -1,49 +1,63 @@
+import { useEffect, useState } from "react";
 
-import './style.css'
-const PlantCard = () => {
+export default function DetailProduct() {
+  const [imgInd, setImgInd] = useState(3);
+  const img = [
+    "https://images.pexels.com/photos/1321909/pexels-photo-1321909.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/1386604/pexels-photo-1386604.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
+  ];
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setImgInd((prevImgInd) => (prevImgInd + 1) % 4);
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [imgInd]);
+
   return (
-    <div className="card">
-      <nav>
-        <svg
-          className="arrow"
-          version="1.1"
-          viewBox="0 0 512 512"
-          width="512px"
-          xmlSpace="preserve"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-        >
-          <polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272" />
-        </svg>
-        Back to all Plants
-        <svg
-          className="heart"
-          version="1.1"
-          viewBox="0 0 512 512"
-          width="512px"
-          xmlSpace="preserve"
-          stroke="#727272"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-        >
-          <path d="M340.8,98.4c50.7,0,91.9,41.3,91.9,92.3c0,26.2-10.9,49.8-28.3,66.6L256,407.1L105,254.6c-15.8-16.6-25.6-39.1-25.6-63.9  c0-51,41.1-92.3,91.9-92.3c38.2,0,70.9,23.4,84.8,56.8C269.8,121.9,302.6,98.4,340.8,98.4 M340.8,83C307,83,276,98.8,256,124.8  c-20-26-51-41.8-84.8-41.8C112.1,83,64,131.3,64,190.7c0,27.9,10.6,54.4,29.9,74.6L245.1,418l10.9,11l10.9-11l148.3-149.8  c21-20.3,32.8-47.9,32.8-77.5C448,131.3,399.9,83,340.8,83L340.8,83z" stroke="#727272" />
-        </svg>
-      </nav>
-      <div className="photo">
-        <img src="https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg" alt="Plant" />
+    <div className="flex flex-col  md:flex-row mt-6  mx-4 md:mx-20 justify-center">
+      <div className="flex flex-col">
+        <div className="">
+          <img
+            src={img[imgInd]}
+            alt=""
+            className="h-[400px] rounded-lg w-[400px] object-cover transition-opacity duration-500 ease-in-out"
+          />
+        </div>
+        <div className="flex items-center justify-center space-x-3 mt-2">
+          {img.map((image, index) => (
+            <div
+              key={index}
+              onClick={() => setImgInd(index)}
+              className="hover:cursor-pointer rounded-lg w-[60px] h-[60px] md:w-[90px] md:h-[90px] overflow-hidden "
+            >
+              <img src={image} className="object-cover w-full h-full" alt="" />
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="description">
-        <h2>Classic Peace Lily</h2>
-        <h4>Popular House Plant</h4>
-        <h1>$18</h1>
-        <p>
-          Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbon and butterfly pick.
+      <div className="w-[100%] md:w-[60%] lg:w-[50%]  mt-4 md:mt-10  md:ml-4">
+        <h1 className="font-bold text-3xl mb-2">Apple Watch 200</h1>
+        <p className="mb-4 text-gray-200">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe consectetur, culpa, voluptatem nostrum non ad quam aliquam labore dolor deleniti dolore animi error, quisquam officiis facere! Distinctio, optio sed. Dignissimos.
         </p>
-        <button>Add to Cart</button>
-        <button>Wishlist</button>
+        <div className="mb-4">
+          <h1 className="text-lg">Price: <span className="text-green-500 font-bold">$200</span></h1>
+          <h1 className="text-lg">Stocks left: <span className="text-blue-500 font-bold">300</span></h1>
+          <h1 className="text-lg">Review: <span className="text-yellow-500 font-bold">400</span></h1>
+        </div>
+        <div className="flex  space-x-4">
+          <button className="bg-blue-700 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-600">
+            Add to Cart
+          </button>
+          <button className="bg-blue-700 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-600">
+            Buy Now
+          </button>
+        </div>
       </div>
     </div>
   );
-};
-
-export default PlantCard;
+}
