@@ -13,8 +13,7 @@ html {
     color: white;
     background: linear-gradient(#2a2b2d, #06090d);
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Keep the background fixed */
-    /* position: sticky; */
+    background-attachment: fixed; 
     height: 100vh;
   }
   

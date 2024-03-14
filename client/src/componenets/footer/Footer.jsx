@@ -1,87 +1,40 @@
+import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
-
-import "./style.css";
 const Footer = () => {
   return (
-    <footer className="footer  top-[70vh] mb-0 mt-20 bottom-0  w-full">
-      <div className="container">
-        <div className="row">
-          <div className="footer-col">
-            <h4>company</h4>
-            <ul>
-              <li>
-                <a href="#">about us</a>
-              </li>
-              <li>
-                <a href="#">our services</a>
-              </li>
-              <li>
-                <a href="#">privacy policy</a>
-              </li>
-              <li>
-                <a href="#">affiliate program</a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-col">
-            <h4>get help</h4>
-            <ul>
-              <li>
-                <a href="#">FAQ</a>
-              </li>
-              <li>
-                <a href="#">shipping</a>
-              </li>
-              <li>
-                <a href="#">returns</a>
-              </li>
-              <li>
-                <a href="#">order status</a>
-              </li>
-              <li>
-                <a href="#">payment options</a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-col">
-            <h4>online shop</h4>
-            <ul>
-              <li>
-                <a href="#">Courses</a>
-              </li>
-              <li>
-                <a href="#">Packages</a>
-              </li>
-              <li>
-                <a href="#">Websites</a>
-              </li>
-              <li>
-                <a href="#">organize Events</a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-col">
-            <h4>follow us</h4>
-            <div className="social-links">
-            
-              <a href="#">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-            </div>
-          </div>
+    <footer className="bg-gray-800 mt-[50%] py-8">
+      <div className="container  mx-auto flex flex-col md:flex-row items-center justify-between px-4">
+        {/* Social Icons */}
+        <div className="flex space-x-4 mb-4 md:mb-0">
+          <a href="#" className="text-gray-300 hover:text-white">
+            <FaFacebook className="w-6 h-6" />
+          </a>
+          <a href="#" className="text-gray-300 hover:text-white">
+            <FaTwitter className="w-6 h-6" />
+          </a>
+          <a href="#" className="text-gray-300 hover:text-white">
+            <FaInstagram className="w-6 h-6" />
+          </a>
         </div>
+
+        {/* Navigation */}
+        <nav className="text-gray-300">
+          <ul className="flex space-x-4">
+            <li>
+              <a href="#" className="hover:text-white">About Us</a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-white">Contact</a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-white">Privacy Policy</a>
+            </li>
+            {/* Add more necessary items as needed */}
+          </ul>
+        </nav>
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;
