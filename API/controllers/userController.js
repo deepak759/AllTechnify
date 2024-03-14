@@ -36,6 +36,35 @@ export const signIn = async (req, res, next) => {
   }
 };
 
+
+// export const signIn = async (req, res, next) => {
+//   const { email, password } = req.body;
+//   try {
+//     const isValidUser = await User.findOne({ email });
+
+//     if (!isValidUser) return next(errorHandler(404,'user not found'))
+//     const isValidPassword = bcrypt.compareSync(password, isValidUser.password);
+//     if (!isValidPassword)
+//       return  next(errorHandler(401, "wrong credentials"));
+//     const { password: pass, ...rest } = isValidUser._doc;
+//     const token = jwt.sign({ id: isValidUser._id }, process.env.JWT_SECRET);
+    
+//     // Set cookie expiration to a far future date
+//     const cookieOptions = {
+//       httpOnly: true,
+//       expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 year from now
+//     };
+
+//     res
+//       .cookie("access_token", token, cookieOptions)
+//       .status(200)
+//       .json(rest);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+
 export const updateUser = async (req, res, next) => {
   if (req.body.password) {
     req.body.password = bcrypt.hashSync(req.body.password, 10);

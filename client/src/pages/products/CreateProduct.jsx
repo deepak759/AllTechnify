@@ -114,104 +114,108 @@ export default function CreateProduct() {
   };
 console.log(formData)
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex  flex-col md:flex-row mt-20 justify-center md:gap-x-7 text-black mb-20 ">
-        <div className="flex items-center justify-center bg-gray-900  w-[80%] md:w-[40%] flex-col">
-          <p className="font-semibold ">
-            Images:
-            <span className="font-normal text-gray-700 ml-2">
-              The first image will be Cover (max 4)
-            </span>
-          </p>
-          <div className="flex gap-4">
-            <input
-              className="p-3 border border-gray-200 rounded w-full"
-              onChange={(e) => setFiles(e.target.files)}
-              type="file"
-              id="images"
-              accept="image/*"
-              multiple
+<form onSubmit={handleSubmit} className="flex flex-col md:flex-row items-stretch justify-center mt-4 gap-7 text-white mb-20">
+  <div className="bg-gray-900 w-full md:w-[40%] p-6 rounded-lg flex flex-col items-center justify-center">
+    <h2 className="text-xl font-semibold mb-4">Images:</h2>
+    <p className="text-sm text-gray-300 mb-4">The first image will be Cover (max 4)</p>
+    <div className="flex flex-col md:flex-row items-center gap-4">
+      <input
+        className="p-3 border border-gray-200 rounded w-full"
+        onChange={(e) => setFiles(e.target.files)}
+        type="file"
+        id="images"
+        accept="image/*"
+        multiple
+      />
+      <button
+        onClick={handleUploadImage}
+        type="button"
+        className="p-3 bg-green-700 border border-green-700 rounded hover:shadow-lg uppercase disabled:opacity-70"
+      >
+        {loading ? "Uploading" : "Upload"}
+      </button>
+    </div>
+    <p className="text-red-800 mt-2">{uploadImagError && uploadImagError}</p>
+  </div>
+
+  <div className="bg-gray-900 w-full md:w-[40%] p-6 rounded-lg">
+    <h2 className="text-xl font-semibold mb-4">List your item</h2>
+
+    <div className="flex flex-col gap-4">
+      <label htmlFor="name" className="text-sm">Name:</label>
+      <input
+        type="text"
+        name="productName"
+        onChange={handleChange}
+        required
+        className="p-3 border bg-gray-600 border-gray-200 rounded"
+      />
+
+      <label htmlFor="price" className="text-sm">Price:</label>
+      <input
+        type="number"
+        id="price"
+        name="price"
+        onChange={handleChange}
+        required
+        className="p-3 border bg-gray-600 border-gray-200 rounded"
+      />
+
+      <label htmlFor="stock" className="text-sm">Stock</label>
+      <input
+        type="number"
+        onChange={handleChange}
+        id="stock"
+        name="stock"
+        required
+        className="p-3 border  bg-gray-600 border-gray-200 rounded"
+      />
+
+      <label htmlFor="discountedPrice" className="text-sm">Discount Price (optional)</label>
+      <input
+        type="number"
+        onChange={handleChange}
+        id="discountedPrice"
+        name="discountedPrice"
+        className="p-3 border  bg-gray-600 border-gray-200 rounded"
+      />
+
+      <label htmlFor="description" className="text-sm">Description:</label>
+      <textarea
+        id="description"
+        onChange={handleChange}
+        name="desc"
+        required
+        className="p-3 border  bg-gray-600 border-gray-200 rounded h-32"
+      ></textarea>
+    </div>
+
+    {formData.imageURLs.length > 0 &&
+      formData.imageURLs.map((url, index) => {
+        return (
+          <div key={url} className="flex justify-between p-3 border items-center mt-4">
+            <img
+              src={url}
+              alt="image"
+              className="h-20 w-20 object-contain rounded-lg"
             />
             <button
-              onClick={handleUploadImage}
               type="button"
-              className="p-3 text-green-700 border border-green-700 rounded hover:shadow-lg uppercase disabled:opacity-70"
+              onClick={() => handleRemoveImage(index)}
+              className="p-3 text-red-700 uppercase rounded-lg hover:opacity-95"
             >
-              {loading ? "Uploading" : "Upload"}
+              Delete
             </button>
           </div>
-          <p className="text-red-800">{uploadImagError && uploadImagError}</p>
-        </div>
+        );
+      })}
+    <button type="submit" className="bg-blue-700 text-white p-3 rounded-lg mt-4 self-end">
+      {submitLoading ? "Creating..." : "Create Listing"}
+    </button>
+    {error && <p className="text-red-700 mt-4">{error}</p>}
+  </div>
+</form>
 
-        <div className="w-[40%] flex flex-col">
-          <h2>List your item</h2>
-
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            name="productName"
-            onChange={handleChange}
-            required
-          />
-
-          <label htmlFor="price">Price:</label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="stock">Stock</label>
-          <input
-            type="number"
-            onChange={handleChange}
-            id="price"
-            name="stock"
-            required
-          />
-          <label htmlFor="discountedPrice">Discounte Price(optional)</label>
-          <input
-            type="number"
-            onChange={handleChange}
-            id="price"
-            name="discountedPrice"
-          />
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            onChange={handleChange}
-            name="desc"
-            required
-          ></textarea>
-{formData.imageURLs.length > 0 &&
-            formData.imageURLs.map((url, index) => {
-              return (
-                <div
-                  key={url}
-                  className=" flex justify-between p-3 border items-center"
-                >
-                  <img
-                    src={url}
-                    alt="image"
-                    className="h-20 w-20 object-contain rounded-lg"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveImage(index)}
-                    className="p-3 text-red-700 uppercase rounded-lg hover:opacity-95"
-                  >
-                    Delete
-                  </button>
-                </div>
-              );
-            })}
-          <button type="submit " className=" bg-blue-700">
-            {submitLoading ? "Creating..." : "Create Listing"}
-          </button>
-          {error && <p className="text-red-700">{error}</p>}
-        </div>
-      </div>
-    </form>
+  
   );
 }

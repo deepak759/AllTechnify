@@ -114,84 +114,87 @@ export default function CreateProduct() {
   };
 console.log(formData)
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex  flex-col md:flex-row mt-20 justify-center md:gap-x-7 text-black mb-20 ">
-        <div className="flex items-center justify-center bg-gray-900  w-[80%] md:w-[40%] flex-col">
-          <p className="font-semibold ">
-            Images:
-            <span className="font-normal text-gray-700 ml-2">
-              The first image will be Cover (max 4)
-            </span>
-          </p>
-          <div className="flex gap-4">
-            <input
-              className="p-3 border border-gray-200 rounded w-full"
-              onChange={(e) => setFiles(e.target.files)}
-              type="file"
-              id="images"
-              accept="image/*"
-              multiple
-            />
-            <button
-              onClick={handleUploadImage}
-              type="button"
-              className="p-3 text-green-700 border border-green-700 rounded hover:shadow-lg uppercase disabled:opacity-70"
-            >
-              {loading ? "Uploading" : "Upload"}
-            </button>
-          </div>
-          <p className="text-red-800">{uploadImagError && uploadImagError}</p>
-        </div>
-
-        <div className="w-[40%] flex flex-col">
-          <h2>List your item</h2>
-
-          <label htmlFor="name">Title:</label>
+    <form onSubmit={handleSubmit} className="">
+    <div className="flex flex-col md:flex-row mt-4 justify-center md:gap-x-7 text-white mb-20">
+      <div className="flex flex-col w-full md:w-[40%] p-6">
+        <h2 className="text-2xl font-semibold mb-4">List Your Item</h2>
+  
+        <label htmlFor="name" className="text-gray-400 mb-2">Title:</label>
+        <input
+          type="text"
+          name="title"
+          onChange={handleChange}
+          required
+          className="p-3 border border-gray-300 rounded bg-gray-700 text-white mb-4"
+        />
+  
+        <label htmlFor="description" className="text-gray-400 mb-2">Description:</label>
+        <textarea
+          id="desc"
+          onChange={handleChange}
+          name="desc"
+          required
+          rows='6'
+          className="p-3 border border-gray-300 rounded bg-gray-700 text-white mb-4"
+        ></textarea>
+  
+        <div className="flex gap-4 mb-4">
           <input
-            type="text"
-            name="title"
-            onChange={handleChange}
-            required
+            className="p-3 border border-gray-300 rounded w-full bg-gray-700 text-white"
+            onChange={(e) => setFiles(e.target.files)}
+            type="file"
+            id="images"
+            accept="image/*"
+            multiple
           />
-
-        
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="desc"
-            onChange={handleChange}
-            name="desc"
-          
-            required
-            rows='10'
-          ></textarea>
-{formData.imageURLs.length > 0 &&
-            formData.imageURLs.map((url, index) => {
-              return (
-                <div
-                  key={url}
-                  className=" flex justify-between p-3 border items-center"
-                >
-                  <img
-                    src={url}
-                    alt="image"
-                    className="h-20 w-20 object-contain rounded-lg"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveImage(index)}
-                    className="p-3 text-red-700 uppercase rounded-lg hover:opacity-95"
-                  >
-                    Delete
-                  </button>
-                </div>
-              );
-            })}
-          <button type="submit " className=" bg-blue-700">
-            {submitLoading ? "Creating..." : "Create Listing"}
+          <button
+            onClick={handleUploadImage}
+            type="button"
+            className="p-3 bg-green-600 text-white rounded hover:bg-green-700 uppercase disabled:opacity-70"
+          >
+            {loading ? "Uploading" : "Upload"}
           </button>
-          {error && <p className="text-red-700">{error}</p>}
         </div>
+        <p className="text-red-600 mb-4">{uploadImagError && uploadImagError}</p>
       </div>
-    </form>
+  
+      <div className="flex flex-col w-full md:w-[40%] p-6">
+        <h3 className="text-2xl font-semibold mb-4">Images:</h3>
+        <p className="text-gray-400 mb-4">
+          The first image will be Cover (max 4)
+        </p>
+  
+        {formData.imageURLs.length > 0 &&
+          formData.imageURLs.map((url, index) => {
+            return (
+              <div
+                key={url}
+                className="flex items-center justify-between p-3 border mb-4"
+              >
+                <img
+                  src={url}
+                  alt="image"
+                  className="h-20 w-20 object-cover rounded-lg"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleRemoveImage(index)}
+                  className="p-2 bg-red-600 text-white rounded hover:bg-red-700 uppercase"
+                >
+                  Delete
+                </button>
+              </div>
+            );
+          })}
+  
+        <button type="submit" className="bg-blue-600 text-white py-3 rounded-full text-center font-bold hover:bg-blue-700 uppercase mt-auto">
+          {submitLoading ? "Creating..." : "Create Listing"}
+        </button>
+        {error && <p className="text-red-600 mt-4">{error}</p>}
+      </div>
+    </div>
+  </form>
+  
+  
   );
 }
