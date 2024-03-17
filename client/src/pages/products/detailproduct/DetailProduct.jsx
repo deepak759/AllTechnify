@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import RecommendList from "../../../componenets/RecommendList";
 
 export default function DetailProduct() {
   const [imgInd, setImgInd] = useState(3);
@@ -18,7 +19,8 @@ export default function DetailProduct() {
   }, [imgInd]);
 
   return (
-    <div className="flex flex-col  md:flex-row mt-6  mx-4 md:mx-20 justify-center">
+    <>
+    <div className="flex flex-col  md:flex-row mt-6  mx-4 md:mx-20 items-center justify-center">
       <div className="flex flex-col">
         <div className="">
           <img
@@ -59,5 +61,6 @@ export default function DetailProduct() {
         </div>
       </div>
     </div>
+      <RecommendList text="recommended"/></>
   );
 }

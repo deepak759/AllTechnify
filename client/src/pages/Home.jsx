@@ -1,9 +1,11 @@
+import RecommendList from "../componenets/RecommendList";
 
 const Home = () => {
   return (
-    <div className=" bg-gray-50 flex items-center">
+    <div className="">
+    <div className="  flex w-full items-center">
       <section
-        className="bg-cover bg-center py-32 w-full"
+        className="bg-cover bg-center  py-32 w-full"
         style={{
           backgroundImage: "url('https://t3.ftcdn.net/jpg/05/14/95/12/240_F_514951224_2dxMLbIw5qNRdPGD003chpbVcxWtcp7K.jpg')",
         }}
@@ -33,6 +35,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </div>
+      <RecommendList text="Featured Blogs"/>
+      <RecommendList text="Featured Product"/>
     </div>
   );
 };
