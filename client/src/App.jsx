@@ -11,12 +11,12 @@ import PrivateRoute from './componenets/PrivateRote.jsx';
 import EditProduct from './pages/products/EditProduct.jsx';
 import EditBlog from './pages/blogs/EditBlog.jsx';
 import Header from './componenets/Header.jsx';
-import Footer from './componenets/footer/Footer.jsx';
+import Footer from './componenets/Footer.jsx';
 import ShowBlogs from './pages/blogs/ShowBlogs.jsx';
 import ShowProducts from './pages/products/ShowProducts.jsx';
 import ReadBlog from './pages/blogs/ReadBlog.jsx';
 import BuyProduct from './pages/products/BuyProduct.jsx';
-import DetailProduct from './pages/products/detailproduct/DetailProduct.jsx';
+import DetailProduct from './pages/products/DetailProduct.jsx';
 
 
 export default function App() {

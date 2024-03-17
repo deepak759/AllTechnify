@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RecommendList from "../../../componenets/RecommendList";
+import RecommendList from "../../componenets/RecommendList";
 
 export default function DetailProduct() {
   const [imgInd, setImgInd] = useState(3);

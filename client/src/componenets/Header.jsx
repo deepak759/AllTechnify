@@ -29,11 +29,13 @@ export default function Header() {
           </div>
         </div>
         <div className="flex">
-          <input
-            type="text"
-            placeholder="Search Blogs, Posts, Users..."
-            className="p-1 px-4 rounded-full mx-4 bg-[#374151] w-full"
-          />
+          <form action="">
+            <input
+              type="text"
+              placeholder="Search Blogs, Posts, Users..."
+              className="p-1 px-4 rounded-full mx-4 bg-[#374151] w-full"
+            />
+          </form>
         </div>
         <div className="" ref={menuRef}>
           <button

@@ -57,7 +57,7 @@ export default function RecommendList({text}) {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - listRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Adjust the sensitivity here
+    const walk = (x - startX) ; // Adjust the sensitivity here
     listRef.current.scrollLeft = scrollLeft - walk;
   };
 
@@ -86,7 +86,7 @@ export default function RecommendList({text}) {
     >
       <div
         style={{ display: "flex", flexDirection: "row", flexWrap: "nowrap" }}
-        className="gap-x-2"
+        className="gap-x-4"
       >
         {productURLs.map((item, index) => (
           <div
@@ -100,7 +100,7 @@ export default function RecommendList({text}) {
             <img
               src={item}
               alt=""
-              className="h-full aspect-auto"
+              className="h-full rounded-md aspect-auto"
               style={{
                
                 cursor: hoveredIndex === index ? "grabbing" : "grab",

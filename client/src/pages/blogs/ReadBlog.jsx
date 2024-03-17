@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Comments from "../../componenets/Comments";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function ReadBlog() {
   const params = useParams();
   const [error, setError] = useState(null);
   const [commentdata, setCommentData] = useState();
   const [commentrror, setCommentError] = useState(null);
-  const [data, setData] = useState({});
+  const [data, setData] = useState();
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
+
   const id = params.id;
 
   const handleCommentSubmit = async (e) => {
@@ -43,7 +45,7 @@ export default function ReadBlog() {
       }
     }
   };
-  console.log(commentdata);
+
   useEffect(() => {
     const getBlog = async (id) => {
       try {
@@ -52,22 +54,40 @@ export default function ReadBlog() {
         if (data.success === false) {
           setError(data.message);
         }
-        console.log(data);
+
         setData(data);
       } catch (error) {
         setError(error);
       }
     };
     getBlog(id);
-  }, [id,commentdata]);
-  console.log(data)
+  }, [id, commentdata]);
+
+  if (!data) {
+    return <div>Loading...</div>; // Display a loading indicator
+  }
   return (
-    <div className="w-[60%]  mt-5 mx-auto    justify-center">
+    <div className="w-[90%] md:w-[60%]  mt-5 mx-auto    justify-center">
       {!error ? (
         <>
-          {" "}
           <div className="image">
-            <img src={data.imageURLs} alt="" className="w-full" />
+            <Carousel
+              autoPlay
+              interval={3000}
+              showArrows={false}
+              showStatus={false}
+              showThumbs={false}
+              infiniteLoop
+              transitionTime={0}
+            >
+              {data.imageURLs.map((item) => {
+                return (
+                  <div className="" key={item}>
+                    <img src={data.imageURLs} alt="" className="w-full" />
+                  </div>
+                );
+              })}
+            </Carousel>
           </div>
           <div className="">
             <div className="font-bold my-3">{data.title}</div>
@@ -105,11 +125,10 @@ export default function ReadBlog() {
             </div>
             {commentrror ? <p className="text-red-500">{commentrror}</p> : ""}
           </form>
-          { data.comments && data.comments.map((item) => (
-            <Comments key={item._id} comment={item} />
-          ))}
-       
-         
+          {data.comments &&
+            data.comments.map((item) => (
+              <Comments key={item._id} comment={item} />
+            ))}
         </>
       ) : (
         <div className="text-red-600">
