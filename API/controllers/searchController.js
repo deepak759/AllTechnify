@@ -40,7 +40,7 @@ export const buyHandler = async (req, res, next) => {
       currency: "usd",
       product_data: {
         name: pro.productName,
-      imagesn:[pro.imageURLs[0]]
+      images:[pro.imageURLs[0]]
       },
       unit_amount: pro.price,
     },

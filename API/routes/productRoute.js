@@ -7,7 +7,7 @@ router.get("/getAllProduct", getAllProduct);
 router.get("/getSpecProduct/:id", getSpecProduct);
 router.get("/getAllMyProduct/",verifyUser, getAllMyProduct);
 router.post("/createProduct", verifyUser, createProduct);
-router.put("/updateProduct/:id", verifyUser, updateProduct);
+router.put("/updateProduct/:id", updateProduct);
 router.delete("/deleteProduct/:id", verifyUser, deleteProduct);
 router.put("/commentProduct/:id", verifyUser, commentProduct);
 

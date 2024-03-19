@@ -1,11 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const url = `/search/${searchText}`;
+    setSearchText("");
+    navigate(url);
+  };
+
   const handleOutsideClick = (e) => {
     if (menuRef.current && !menuRef.current.contains(e.target)) {
       setMenuOpen(false);
@@ -28,15 +38,18 @@ export default function Header() {
             </Link>
           </div>
         </div>
-        <div className="flex">
-          <form action="">
+        <form action="submit" onSubmit={handleSearchSubmit}>
+          <div className="flex">
             <input
               type="text"
+              required
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search Blogs, Posts, Users..."
               className="p-1 px-4 rounded-full mx-4 bg-[#374151] w-full"
             />
-          </form>
-        </div>
+          </div>
+        </form>
         <div className="" ref={menuRef}>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -110,11 +123,18 @@ export default function Header() {
             </Link>
           </div>
           <div>
-            <input
+          <form action="submit" onSubmit={handleSearchSubmit}>
+          <div className="flex">
+          <input
               type="text"
+              required
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search Blogs, Posts, Users..."
               className="p-1 px-4 rounded-full mx-4 bg-[#374151] w-full"
             />
+          </div>
+        </form>
           </div>
         </div>
         <div className="flex items-center">

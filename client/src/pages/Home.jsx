@@ -12,7 +12,8 @@ const Home = () => {
       <div className="relative ">
         <Carousel
           autoPlay
-          interval={3000}
+          interval={5000}
+          stopOnHover={false}
           showArrows={false}
           showStatus={false}
           showThumbs={false}
