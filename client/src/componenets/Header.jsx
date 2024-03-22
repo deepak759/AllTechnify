@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  logOutUserFail,
+  logOutUserStart,
+  logOutUserSuccess,
+} from "../redux/user/userSlice";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
@@ -21,6 +26,23 @@ export default function Header() {
       setMenuOpen(false);
     }
   };
+  const dispatch = useDispatch();
+  const handleLogOut =async () => {
+    dispatch(logOutUserStart());
+    try {
+      const res=await fetch(`/api/user/logout`)
+      const data=await res.json()
+      if(data.success==false){
+        dispatch(logOutUserFail(data.message))
+      }
+      dispatch(logOutUserSuccess());
+      alert('user logout succefully')
+      navigate('/')
+    } catch (error) {
+      dispatch(logOutUserFail(error));
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("click", handleOutsideClick);
     return () => {
@@ -92,12 +114,20 @@ export default function Header() {
                   </li>
                   <li className="mb-2">
                     {currentUser ? (
+                      <div className="">
+                      <button
+                      onClick={handleLogOut}
+                      className="mr-4 hover:bg-gray-700 transition p-2 px-4 rounded bg-black"
+                    >
+                      Logout
+                    </button>
                       <Link
                         to="/profile"
                         className="no-underline hover:underline "
                       >
                         Go to Profile
                       </Link>
+                      </div>
                     ) : (
                       <Link
                         to="/signin"
@@ -123,18 +153,18 @@ export default function Header() {
             </Link>
           </div>
           <div>
-          <form action="submit" onSubmit={handleSearchSubmit}>
-          <div className="flex">
-          <input
-              type="text"
-              required
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              placeholder="Search Blogs, Posts, Users..."
-              className="p-1 px-4 rounded-full mx-4 bg-[#374151] w-full"
-            />
-          </div>
-        </form>
+            <form action="submit" onSubmit={handleSearchSubmit}>
+              <div className="flex">
+                <input
+                  type="text"
+                  required
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  placeholder="Search Blogs, Posts, Users..."
+                  className="p-1 px-4 rounded-full mx-4 bg-[#374151] w-full"
+                />
+              </div>
+            </form>
           </div>
         </div>
         <div className="flex items-center">
@@ -168,13 +198,21 @@ export default function Header() {
               </li>
               <li className="mr-4">
                 {currentUser ? (
-                  <Link to="/profile">
-                    <img
-                      src={currentUser.avatar}
-                      className="w-8 h-8 rounded-full"
-                      alt=""
-                    />
-                  </Link>
+                  <div className="flex">
+                    <button
+                      onClick={handleLogOut}
+                      className="mr-4 hover:bg-gray-700 transition p-2 px-4 rounded bg-black"
+                    >
+                      Logout
+                    </button>
+                    <Link to="/profile">
+                      <img
+                        src={currentUser.avatar}
+                        className="w-8 h-8 rounded-full"
+                        alt=""
+                      />
+                    </Link>
+                  </div>
                 ) : (
                   <Link to="/signin" className="no-underline hover:underline">
                     Login

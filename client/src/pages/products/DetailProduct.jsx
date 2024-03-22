@@ -6,16 +6,11 @@ import { FaRegEdit } from "react-icons/fa";
 export default function DetailProduct() {
   const params = useParams();
   const currentProductId = params.id;
-  const [imgInd, setImgInd] = useState(3);
+  const [imgInd, setImgInd] = useState(0);
   const { currentUser } = useSelector((state) => state.user);
   const [error, setError] = useState(null);
   const [product, setProduct] = useState();
-  const img = [
-    "https://images.pexels.com/photos/1321909/pexels-photo-1321909.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/1386604/pexels-photo-1386604.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg?auto=compress&cs=tinysrgb&w=600",
-  ];
+  
 
   useEffect(() => {
     const getProduct = async (id) => {
@@ -30,6 +25,7 @@ export default function DetailProduct() {
     };
     getProduct(currentProductId);
   }, [currentProductId]);
+  const img=product?.imageURLs
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -42,11 +38,11 @@ export default function DetailProduct() {
   if (!product) return <div className="">Loading</div>;
   return (
     <>
-      <div className="flex flex-col  md:flex-row mt-6  mx-4 md:mx-20 items-center justify-center">
+      <div className="flex flex-col  md:flex-row mt-6  mx-4 md:mx-20 items-center lg:items-start justify-center">
         {product.userRef === currentUser?._id ? (
           <div className="absolute top-10 right-4 m-4">
           <Link
-  className="text-3xl text-black hover:cursor-pointer   md:text-white p-3 rounded"
+  className="text-3xl text-white hover:cursor-pointer   md:text-white p-3 rounded"
   to={`/edit-product/${currentProductId}`}
   title="Edit Product"
 >
@@ -67,7 +63,7 @@ export default function DetailProduct() {
               <div
                 key={index}
                 onClick={() => setImgInd(index)}
-                className="hover:cursor-pointer rounded-lg w-[60px] h-[60px] md:w-[90px] md:h-[90px] overflow-hidden "
+                className="hover:cursor-pointer rounded-lg w-[60px] h-[60px]  overflow-hidden "
               >
                 <img
                   src={image}
@@ -78,11 +74,14 @@ export default function DetailProduct() {
             ))}
           </div>
         </div>
-        <div className="w-[100%] md:w-[60%] lg:w-[50%]  mt-4   md:ml-4">
+        <div className="w-[70%] md:w-[60%] lg:w-[50%]   lg:mt-10   md:ml-4">
+        
+
           <h1 className="font-bold text-3xl mb-2">{product.productName}</h1>
           <p className="mb-4 text-gray-200">
            {product.desc}
           </p>
+       
           <div className="mb-4">
             <h1 className="text-lg">
               Price: <span className="text-green-500 font-bold">${product.price}</span>

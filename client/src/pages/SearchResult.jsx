@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import BlogCard from "../componenets/BlogCard";
+import ProductCard from "../componenets/ProductCard";
+import UserCard from "../componenets/UserCard";
 
 export default function SearchResult() {
   const params = useParams();
@@ -49,23 +52,31 @@ export default function SearchResult() {
                 key={index}
                 onClick={() => handleButtonClick(index)}
                 className={`hover:cursor-pointer w-full py-4 ${
-                  activeButtonIndex === index ? 'bg-gray-700' : 'bg-gray-900'
+                  activeButtonIndex === index ? "bg-gray-700" : "bg-gray-900"
                 }`}
               >
-                {index==0?"Blogs":index==1?"Products":"Users"} ({item.length || 0})
+                {index == 0 ? "Blogs" : index == 1 ? "Products" : "Users"} (
+                {item.length || 0})
               </button>
             ))}
           </div>
-          <div className="">
+          <div className="w-full">
             {showingData?.length > 0 ? (
-              <div className="">
-                {showingData.map((item) => {
-                  return (
-                    <div className="" key={item._id}>
-                      {item._id}
-                    </div>
-                  );
-                })}
+              <div className="flex flex-wrap justify-center items-start mx-10 mt-4 gap-4">
+                {showingData.map((item) => (
+                  <div
+                    key={item._id}
+                    className=""
+                  >
+                    {activeButtonIndex === 0 ? (
+                      <BlogCard item={item} />
+                    ) : activeButtonIndex === 1 ? (
+                      <ProductCard item={item} />
+                    ) : (
+                      <UserCard item={item} />
+                    )}
+                  </div>
+                ))}
               </div>
             ) : (
               <div className="">Not Found Any Data For Your search</div>

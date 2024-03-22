@@ -100,7 +100,8 @@ export default function CreateProduct() {
       if (data.success === false) {
         setUploadImageError(data.message);
       }
-       navigate("/");
+      else
+       navigate("/products");
     } catch (error) {
       setError(error);
       setSubmitLoading(false);

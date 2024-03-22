@@ -14,11 +14,11 @@ export default function ProductCard({ item }) {
         />
 
         <div className="px-5 pb-5">
-          <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="text-xl h-20 font-semibold tracking-tight text-gray-900 dark:text-white">
             {productName}
           </h5>
 
-          <div className="flex items-center mt-2.5 mb-5">
+          <div className="flex h-20 items-center mt-2.5 mb-5">
             <div className="flex items-center space-x-1 rtl:space-x-reverse">
               {desc}
             </div>

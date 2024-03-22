@@ -46,6 +46,7 @@ export const updateBlog = async (req, res, next) => {
     const blog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
+   
     res.status(200).json(blog);
   } catch (error) {
     next(error);

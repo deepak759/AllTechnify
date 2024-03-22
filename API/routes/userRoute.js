@@ -9,7 +9,7 @@ router.post("/createUser", createUser);
 router.post("/signin", signIn);
 router.put("/update",verifyUser, updateUser);
 router.delete("/delete",verifyUser, deleteUser);
-router.put("/logout",verifyUser, logOutUser);
+router.get("/logout",verifyUser, logOutUser);
 
 
 export default router

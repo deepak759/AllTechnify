@@ -49,7 +49,10 @@ export default function CreateProduct() {
       } catch (err) {
         setUploadImageError("Image upload failed (2 mb max per image)");
       }
-    } else {
+    } else if(files.length==0){
+
+      setUploadImageError("select at least one image");
+    } else{
       setUploadImageError("You can only upload up to six images");
     }
 
@@ -100,7 +103,8 @@ export default function CreateProduct() {
       if (data.success === false) {
         setUploadImageError(data.message);
       }
-       navigate("/");
+      else
+       navigate("/blogs");
     } catch (error) {
       setError(error);
       setSubmitLoading(false);

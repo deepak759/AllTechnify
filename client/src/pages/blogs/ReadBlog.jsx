@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Comments from "../../componenets/Comments";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { FaRegEdit } from "react-icons/fa";
 
 export default function ReadBlog() {
   const params = useParams();
@@ -54,7 +55,7 @@ export default function ReadBlog() {
         if (data.success === false) {
           setError(data.message);
         }
-
+        await data.desc.replace("\n", "<br>");
         setData(data);
       } catch (error) {
         setError(error);
@@ -62,6 +63,7 @@ export default function ReadBlog() {
     };
     getBlog(id);
   }, [id, commentdata]);
+
 
   if (!data) {
     return <div>Loading...</div>; // Display a loading indicator
@@ -71,6 +73,17 @@ export default function ReadBlog() {
       {!error ? (
         <>
           <div className="image">
+            {data.userRef === currentUser?._id ? (
+              <div className="absolute z-10 top-10 right-4 m-4">
+                <Link
+                  className="text-3xl  hover:cursor-pointer   md:text-white p-3 rounded"
+                  to={`/edit-blog/${id}`}
+                  title="Edit Product"
+                >
+                  <FaRegEdit />
+                </Link>
+              </div>
+            ) : null}
             <Carousel
               autoPlay
               interval={3000}
@@ -83,13 +96,13 @@ export default function ReadBlog() {
               {data.imageURLs.map((item) => {
                 return (
                   <div className="" key={item}>
-                    <img src={data.imageURLs} alt="" className="w-full" />
+                    <img src={item} alt="" className="w-full" />
                   </div>
                 );
               })}
             </Carousel>
           </div>
-          <div className="">
+          <div className="" style={{ whiteSpace: 'pre-line' }}  >
             <div className="font-bold my-3">{data.title}</div>
             <div className="">{data.desc}</div>
           </div>

@@ -5,10 +5,10 @@ export default function BlogCard({ item }) {
   let { imageURLs, title, desc,_id, createdAt} = item;
   title = title.substring(0, 50);
   createdAt = createdAt.substring(0, 10);
-  desc = desc.substring(0, 170);
+  desc = desc.substring(0, 100);
   return (
    
-    <div className="max-w-sm  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-[400px]  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
      
         <img
           className="rounded-t-lg h-[250px] w-full"
@@ -18,12 +18,12 @@ export default function BlogCard({ item }) {
       
       <div className="p-5">
         <h2><span className="text-gray-400">Created: </span> {createdAt}</h2>
-          <h5 className="mb-2 mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 mt-2 text-2xl h-20 font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
           </h5>
        
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-         {desc}
+        <p className="mb-3 h-20 font-normal text-gray-700 dark:text-gray-400">
+         {desc}...
         </p>
         <Link
           to={`/blogs/read/${_id}`}
