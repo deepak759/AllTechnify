@@ -26,6 +26,11 @@ export const createProduct = async (req, res, next) => {
   try {
     const newProduct = new Product(req.body);
     await newProduct.save();
+    const userRef = req.body.userRef;
+    const findUser = await User.findById(userRef);
+    if (!findUser) return next(errorHandler(404, "user not found"));
+    findUser.products=findUser.products+1;
+    await findUser.save()
     res.status(200).json(newProduct);
   } catch (error) {
     next(error);
@@ -51,9 +56,13 @@ export const updateProduct = async (req, res, next) => {
 export const deleteProduct = async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id);
+   
     if (!product) return next(errorHandler(404, "Product Not Found"));
     if (product.userRef !== req.user.id)
       return next(errorHandler(400, "You can only delete your own products"));
+    const findreluser=await User.findById(product.userRef)
+    findreluser.products=findreluser.products-1;
+    await findreluser.save();
     await Product.findByIdAndDelete(req.params.id);
     res.status(200).json("product deleted succesfully");
   } catch (error) {
@@ -78,10 +87,10 @@ export const commentProduct = async (req, res, next) => {
   }
 };
 export const getAllMyProduct = async (req, res, next) => {
-    try {
-        const myProducts=await Product.find({userRef:req.user.id})
-        res.status(200).json(myProducts);
-    } catch (error) {
-        next(error)
-    }
+  try {
+    const myProducts = await Product.find({ userRef: req.user.id });
+    res.status(200).json(myProducts);
+  } catch (error) {
+    next(error);
+  }
 };
