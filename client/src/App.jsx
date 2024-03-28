@@ -32,7 +32,6 @@ export default function App() {
         <Route path='/' element={<Home/>} />
         <Route path='/signin' element={<SignIn  />} />
         <Route path='/products' element={<ShowProducts />}/>
-        <Route path='/products/buy' element={<BuyProduct />}/>
         <Route path='/products/detail/:id' element={<DetailProduct />}/>
         <Route path='/blogs' element={<ShowBlogs/>}/>
         <Route path='/blogs/read/:id' element={<ReadBlog />}/>
@@ -40,6 +39,7 @@ export default function App() {
         <Route path='/search/:searchTerm' element={<SearchResult/> }/>
         <Route element={<PrivateRoute/> }>
         <Route path="/profile" element={<Profile />} />
+        <Route path='/products/buy/:id' element={<BuyProduct />}/>
           <Route path="/create-product" element={<CreateListing />} />
           <Route path="/create-blog" element={<CreateBlog />} />
           <Route path="/edit-product/:id" element={<EditProduct />} />

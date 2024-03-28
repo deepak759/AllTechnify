@@ -19,6 +19,7 @@ export const getAllBlogs = async (req, res, next) => {
 };
 export const getAllMyBlogs = async (req, res, next) => {
   try {
+  
     const blogs = await Blog.find({ userRef: req.user.id });
     res.status(200).json(blogs);
   } catch (error) {

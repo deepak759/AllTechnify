@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import RecommendList from "../componenets/RecommendList";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -7,6 +8,28 @@ const Home = () => {
     "https://images.unsplash.com/photo-1535638990993-5ad1c21631c4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGdpcmwlMjBsYW5kc2NhcGV8ZW58MHx8MHx8fDA%3D",
     "https://images.unsplash.com/photo-1531291035213-47a9f036412c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGdpcmwlMjBsYW5kc2NhcGV8ZW58MHx8MHx8fDA%3D",
   ];
+  const [products,setProducts]=useState()
+  const [blogs,setBlogs]=useState()
+  useEffect(() => {
+    const getAllBlog = async () => {
+      const res = await fetch('/api/blogs/getAllBlog');
+      const blog = await res.json();
+      setBlogs(blog);
+    };
+    getAllBlog();
+  }, []); // Empty dependency array means this effect runs only once on mount
+  
+  useEffect(() => {
+    const getAllProduct = async () => {
+      const res = await fetch('/api/product/getAllProduct');
+      const product = await res.json();
+      setProducts(product);
+    };
+    getAllProduct();
+  }, []); // Empty dependency array means this effect runs only once on mount
+  
+ 
+  if(!products || !blogs) return ( <div className="">Loading</div> )
   return (
     <div className="">
       <div className="relative ">
@@ -41,8 +64,8 @@ const Home = () => {
           })}
         </Carousel>
       </div>
-      <RecommendList text="Featured Blogs" />
-      <RecommendList text="Featured Product" />
+      <RecommendList item={blogs} type="blog" text="Featured Blogs" />
+      <RecommendList item={products} type="product" text="Featured Product" />
     </div>
   );
 };
