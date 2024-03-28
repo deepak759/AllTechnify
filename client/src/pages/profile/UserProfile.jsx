@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+
 import BlogCard from "../../componenets/BlogCard";
 import ProductCard from "../../componenets/ProductCard";
+import { useParams } from "react-router-dom";
 
-export default function Profile() {
-  const { currentUser } = useSelector((state) => state.user);
+export default function UserProfile() {
+  const params = useParams();
+  const UserID = params.id;
+
   const [data, setData] = useState();
   const [product, setProducts] = useState([]);
   const [blogs, setBlogs] = useState([]);
@@ -14,7 +17,7 @@ export default function Profile() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await fetch(`/api/user/getUser/${currentUser._id}`);
+        const res = await fetch(`/api/user/getUser/${UserID}`);
         const user = await res.json();
         if (user.success == false) {
           setError(user.message);
@@ -29,14 +32,14 @@ export default function Profile() {
 
   useEffect(() => {
     const getUserBlogs = async () => {
-      const res = await fetch(`/api/blogs/getAllMyBlog`);
+      const res = await fetch(`/api/blogs/getAllUserBlog/${UserID}`);
       const blog = await res.json();
       setBlogs(blog);
 
       console.log(showPostCategory);
     };
     const getUserProducts = async () => {
-      const res = await fetch(`/api/product/getAllMyProduct`);
+      const res = await fetch(`/api/product/getAllUserProduct/${UserID}`);
       const products = await res.json();
       setProducts(products);
     };

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function ProductCard({ item }) {
   let { imageURLs, productName, price, _id, desc } = item;
-  productName = productName.substring(0, 70);
+  productName = productName.substring(0, 50);
 
   desc = desc.substring(0, 130);
 
@@ -18,7 +18,7 @@ export default function ProductCard({ item }) {
 
         <div className="px-5 pb-5">
           <h5 className="text-xl h-20 font-semibold tracking-tight text-gray-900 dark:text-white">
-            {productName}
+            {productName}...
           </h5>
 
           <div className="flex h-20 items-center mt-2.5 mb-5">

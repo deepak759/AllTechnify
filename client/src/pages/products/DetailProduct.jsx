@@ -3,6 +3,7 @@ import RecommendList from "../../componenets/RecommendList";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaRegEdit } from "react-icons/fa";
+import { loadStripe } from "@stripe/stripe-js";
 export default function DetailProduct() {
   const params = useParams();
   const currentProductId = params.id;
@@ -48,7 +49,35 @@ export default function DetailProduct() {
     return () => clearInterval(intervalId);
   }, []);
 console.log(products)
-  if (!products) return <div className="">Loading</div>;
+
+
+const handleBuy = async () => {
+  const stripe = await loadStripe(
+    "pk_test_51OsnSiSCYJhYhwAnl1OhMTQ1ZBBGy9nJZcRsHzQWLj1cfBwToiNyuk0BAELYjq2z4PH2rZtAPInwzaEhV97PuxSP00YdKxlibp"
+  );
+
+  const body = {
+    products: [
+     product
+    ],
+  };
+  const header = {
+    "Content-Type": "Application/json",
+  };
+  const res = await fetch("/api/search/buy", {
+    method: "POST",
+    headers: header,
+    body: JSON.stringify(body),
+  });
+  const session = await res.json();
+  const result = stripe.redirectToCheckout({
+    sessionId: session.id,
+  });
+  if (result.error) {
+    console.log(result.error);
+  }
+};
+  if (!products || !product) return <div className="">Loading</div>;
   return (
     <>
       <div className="flex flex-col  md:flex-row mt-6  mx-4 md:mx-20 items-center lg:items-start justify-center">
@@ -112,12 +141,18 @@ console.log(products)
             <button className="bg-blue-700 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-600">
               Add to Cart
             </button>
-            <Link
+            {/* <Link
               to={`/products/buy/${currentProductId}`}
               className="bg-blue-700 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-600"
             >
               Buy Now
-            </Link>
+            </Link> */}
+            <button
+            onClick={handleBuy}
+              className="bg-blue-700 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-600"
+            >
+              Buy Now
+            </button>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function BlogCard({ item }) {
   let { imageURLs, title, desc,_id, createdAt} = item;
-  title = title.substring(0, 50);
+  title = title.substring(0, 45);
   createdAt = createdAt.substring(0, 10);
   desc = desc.substring(0, 100);
   return (
@@ -19,7 +19,7 @@ export default function BlogCard({ item }) {
       <div className="p-5">
         <h2><span className="text-gray-400">Created: </span> {createdAt}</h2>
           <h5 className="mb-2 mt-2 text-2xl h-20 font-bold tracking-tight text-gray-900 dark:text-white">
-          {title}
+          {title}...
           </h5>
        
         <p className="mb-3 h-20 font-normal text-gray-700 dark:text-gray-400">

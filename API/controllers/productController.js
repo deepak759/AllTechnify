@@ -22,6 +22,15 @@ export const getSpecProduct = async (req, res, next) => {
   }
 };
 
+export const getAllUserProduct = async (req, res, next) => {
+  try {
+    const products = await Product.find({ userRef: req.params.id });
+    res.status(200).json(products);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const createProduct = async (req, res, next) => {
   try {
     const newProduct = new Product(req.body);

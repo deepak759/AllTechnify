@@ -18,6 +18,7 @@ import ReadBlog from './pages/blogs/ReadBlog.jsx';
 import BuyProduct from './pages/products/BuyProduct.jsx';
 import DetailProduct from './pages/products/DetailProduct.jsx';
 import SearchResult from './pages/SearchResult.jsx';
+import UserProfile from './pages/profile/UserProfile.jsx';
 
 
 export default function App() {
@@ -38,7 +39,7 @@ export default function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/search/:searchTerm' element={<SearchResult/> }/>
         <Route element={<PrivateRoute/> }>
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:id" element={<UserProfile />} />
         <Route path='/products/buy/:id' element={<BuyProduct />}/>
           <Route path="/create-product" element={<CreateListing />} />
           <Route path="/create-blog" element={<CreateBlog />} />
