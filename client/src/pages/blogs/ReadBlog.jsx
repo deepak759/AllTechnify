@@ -96,7 +96,7 @@ export default function ReadBlog() {
               {data.imageURLs.map((item) => {
                 return (
                   <div className="" key={item}>
-                    <img src={item} alt="" className="w-full" />
+                    <img src={item} alt="" className="w-full aspect-video" />
                   </div>
                 );
               })}

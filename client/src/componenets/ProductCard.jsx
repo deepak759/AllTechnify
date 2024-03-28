@@ -2,7 +2,10 @@
 import { Link } from "react-router-dom";
 
 export default function ProductCard({ item }) {
-  const { imageURLs, productName, price, _id, desc } = item;
+  let { imageURLs, productName, price, _id, desc } = item;
+  productName = productName.substring(0, 70);
+
+  desc = desc.substring(0, 130);
 
   return (
   
@@ -20,7 +23,7 @@ export default function ProductCard({ item }) {
 
           <div className="flex h-20 items-center mt-2.5 mb-5">
             <div className="flex items-center space-x-1 rtl:space-x-reverse">
-              {desc}
+              {desc}...
             </div>
           </div>
           <div className="flex items-center justify-between">

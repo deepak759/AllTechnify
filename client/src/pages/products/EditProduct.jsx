@@ -13,7 +13,7 @@ export default function EditProduct() {
   const params=useParams()
 
 
-  // const ProductId=params.id;
+  const ProductId=params.id;
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -37,7 +37,7 @@ const getOldData=async(id)=>{
   }
 
 }
-getOldData('65ed7cfb7e0f56bffee0f489')
+getOldData(ProductId)
 },[])
 
   const handleChange = (e) => {
@@ -108,7 +108,7 @@ getOldData('65ed7cfb7e0f56bffee0f489')
         return setError("you must upload at least 1 image");
       setSubmitLoading(true);
       setError(true);
-      const res = await fetch("/api/product/updateProduct/65ed7cfb7e0f56bffee0f489", {
+      const res = await fetch(`/api/product/updateProduct/${ProductId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, userRef: currentUser._id }),
@@ -132,6 +132,7 @@ getOldData('65ed7cfb7e0f56bffee0f489')
     });
   };
 console.log(formData)
+if(!formData.imageURLs.length) return ( <div className="">Loading</div> )
   return (
 <form onSubmit={handleSubmit} className="flex flex-col md:flex-row items-stretch justify-center mt-4 gap-7 text-white mb-20">
   <div className="bg-gray-900 w-full md:w-[40%] p-6 rounded-lg flex flex-col items-center justify-center">

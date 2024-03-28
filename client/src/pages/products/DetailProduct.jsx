@@ -29,7 +29,7 @@ export default function DetailProduct() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setImgInd((prevImgInd) => (prevImgInd + 1) % 4);
+      setImgInd((prevImgInd) => (prevImgInd + 1) % (product?.imageURLs.length || 1 ));
     }, 3000);
 
     return () => clearInterval(intervalId);
