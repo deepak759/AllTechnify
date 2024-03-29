@@ -43,9 +43,9 @@ export default function SearchResult() {
   return (
     <div className="mt-6 ">
       {!error ? (
-        <div className="min-h-[70vh]">
-          <h1>Search result for: {queryTerm}</h1>
-          <h1>Found</h1>
+        <div className="min-h-[80vh]">
+          <h1 className="ml-2">Search result for: {queryTerm}</h1>
+          <h1 className="ml-2">Found</h1>
           <div className="bg-black mt-4 w-full justify-around flex">
             {data.map((item, index) => (
               <button
@@ -62,7 +62,7 @@ export default function SearchResult() {
           </div>
           <div className="w-full">
             {showingData?.length > 0 ? (
-              <div className="flex flex-wrap justify-center items-start mx-10 mt-4 gap-4">
+              <div className="flex flex-wrap justify-center items-start  mx-10 mt-4 gap-4">
                 {showingData.map((item) => (
                   <div
                     key={item._id}
@@ -79,7 +79,7 @@ export default function SearchResult() {
                 ))}
               </div>
             ) : (
-              <div className="">Not Found Any Data For Your search</div>
+              <div className="ml-2">Not Found Any Data For Your search</div>
             )}
           </div>
         </div>

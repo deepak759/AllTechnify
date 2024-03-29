@@ -38,8 +38,8 @@ export default function App() {
         <Route path='/blogs/read/:id' element={<ReadBlog />}/>
         <Route path='/signup' element={<SignUp />} />
         <Route path='/search/:searchTerm' element={<SearchResult/> }/>
-        <Route element={<PrivateRoute/> }>
         <Route path="/profile/:id" element={<UserProfile />} />
+        <Route element={<PrivateRoute/> }>
         <Route path='/products/buy/:id' element={<BuyProduct />}/>
           <Route path="/create-product" element={<CreateListing />} />
           <Route path="/create-blog" element={<CreateBlog />} />

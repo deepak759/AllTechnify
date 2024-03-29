@@ -122,61 +122,37 @@ export const getAllUser = async (req, res, next) => {
   }
 };
 
-export const followUser = async (req, res, next) => {
+
+
+
+export const toggleFollow = async (req, res, next) => {
   try {
     const followerID = req.params.id;
     const followingID = req.user.id;
+
+    // Check if the follower is already following the user
+    const myInfo = await User.findById(followingID);
     const followUser = await User.findById(followerID);
-    if (!followUser)
-      return next(errorHandler(404, "No user found with this id"));
-    followUser.followers.push(followingID);
 
-    await followUser.save();
-    const followingUser = await User.findById(followingID);
-    if (!followUser) return next(errorHandler(404, "You are not authorised"));
-    followingUser.followings.push(followerID);
-    await followingUser.save();
-    res.status(200).json("you followed succesfull");
-  } catch (error) {
-    next(error);
-  }
-};
-export const unfollowUser = async (req, res, next) => {
-  try {
-    const followerID = req.params.id;
-    const followingID = req.user.id;
+    const isFollowing = myInfo.followings.includes(followerID);
+    if (isFollowing) {
+      // Unfollow the user
+      const followerIndex = myInfo.followings.indexOf(followerID);
+      const followingIndex = followUser.followers.indexOf(followingID);
 
-    // Find the user to unfollow
-    const followedUser = await User.findById(followerID);
-    if (!followedUser) {
-      return next(errorHandler(404, "No user found with this id"));
+      myInfo.followings.splice(followerIndex, 1);
+      followUser.followers.splice(followingIndex, 1);
+
+      await Promise.all([myInfo.save(), followUser.save()]);
+      res.status(200).json("You unfollowed successfully");
+    } else {
+      // Follow the user
+      myInfo.followings.push(followerID);
+      followUser.followers.push(followingID);
+
+      await Promise.all([myInfo.save(), followUser.save()]);
+      res.status(200).json("You followed successfully");
     }
-
-    // Remove the current user's ID from the followers array of the user to unfollow
-    const followerIndex = followedUser.followers.indexOf(followingID);
-    if (followerIndex !== -1) {
-      followedUser.followers.splice(followerIndex, 1);
-    }
-
-    // Save the changes
-    await followedUser.save();
-
-    // Find the current user
-    const followingUser = await User.findById(followingID);
-    if (!followingUser) {
-      return next(errorHandler(404, "You are not authorized"));
-    }
-
-    // Remove the followed user's ID from the followings array of the current user
-    const followingIndex = followingUser.followings.indexOf(followerID);
-    if (followingIndex !== -1) {
-      followingUser.followings.splice(followingIndex, 1);
-    }
-
-    // Save the changes
-    await followingUser.save();
-
-    res.status(200).json("You unfollowed successfully");
   } catch (error) {
     next(error);
   }

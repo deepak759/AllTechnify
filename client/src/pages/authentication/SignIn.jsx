@@ -44,7 +44,7 @@ export default function SignIn() {
    
   };
   return (
-    <div className="login-box">
+    <div className="login-box mt-80">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="user-box">

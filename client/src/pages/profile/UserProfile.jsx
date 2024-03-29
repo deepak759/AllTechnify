@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 
 import BlogCard from "../../componenets/BlogCard";
 import ProductCard from "../../componenets/ProductCard";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function UserProfile() {
   const params = useParams();
   const UserID = params.id;
-
+  const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser);
+  const navigate = useNavigate();
   const [data, setData] = useState();
   const [product, setProducts] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState(null);
+  const [isFollow, setFollow] = useState(null);
   const [showPostCategory, setShowPostCategory] = useState(blogs);
 
   useEffect(() => {
@@ -51,6 +55,38 @@ export default function UserProfile() {
     setShowPostCategory(product);
   }, [product]);
 
+  const handleFollow = async () => {
+    if (!currentUser) {
+      navigate("/signin");
+    }
+    try {
+      const res = await fetch(`/api/user/toggleFollow/${UserID}`);
+      const data = await res.json();
+      if (data.success == false) {
+        console.log(data.message);
+      } else {
+        setFollow(!isFollow);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const checkFollow = async () => {
+      try {
+        const res = await fetch(`/api/user/getUser/${currentUser._id}`);
+        const data = await res.json();
+        const isfllow = data.followings.indexOf(UserID);
+        if(isfllow!==-1)setFollow(true)
+        else setFollow(false)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    checkFollow();
+  });
+
   console.log(showPostCategory);
   if (!data) return <div className="">Loading</div>;
   return (
@@ -65,7 +101,7 @@ export default function UserProfile() {
         </div>
         <div className="flex flex-col mx-2 gap-y-6">
           <div className="font-bold mt-2 text-2xl text-center">
-            <h1>{data.name}</h1>
+            <h1>{data.name.toUpperCase()}</h1>
           </div>
           <div className="flex gap-x-4">
             <div>
@@ -82,6 +118,16 @@ export default function UserProfile() {
             <div>
               <span className="font-bold">{data.blogs}</span> Blogs
             </div>
+          </div>
+          <div className="flex justify-center">
+            <button
+              className={`${
+                !isFollow ? "bg-blue-700" : "bg-gray-600"
+              } p-1 px-8 rounded-md`}
+              onClick={handleFollow}
+            >
+              {isFollow ? "Following" : "Follow"}
+            </button>
           </div>
         </div>
       </div>

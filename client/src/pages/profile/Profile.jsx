@@ -110,7 +110,7 @@ export default function Profile() {
               </div>
             ))
           ) : (
-            <div className="font-bold  text-2xl flex items-center ">
+            <div className="font-bold h-[50vh] text-2xl flex items-center ">
               <div className="flex justify-normal">
                 <h1 className="text-center">
                   No {showPostCategory === blogs ? "Blogs" : "Products"}{" "}
