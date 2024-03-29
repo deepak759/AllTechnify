@@ -28,8 +28,8 @@ e.preventDefault();
   };
   
   return (
-    <div className="login-box mt-80 ">
-      <h2>SignUp</h2>
+    <div className="login-box mt-80 sm:w-[500px]">
+      <h2 className="font-bold text-3xl">SIGN UP</h2>
       <form onSubmit={handleSubmit}>
         <div className="user-box">
           <input

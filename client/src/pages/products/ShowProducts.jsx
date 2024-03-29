@@ -23,10 +23,10 @@ export default function ShowProducts() {
   }, []);
 console.log(products)
   return (
-    <div>
+    <div className="flex justify-center">
       {!error ? (
         products !== null ? ( // Check if products is not null before mapping
-          <div className="grid mx-10 mt-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid mx-10 mt-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {products.map((item) => (
               <ProductCard key={item._id} item={item} />
             ))}

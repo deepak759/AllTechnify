@@ -34,7 +34,7 @@ const Home = () => {
     <div className="">
       <div className="relative ">
       <div className="absolute z-10 text-center inset-0 flex flex-col justify-center items-center text-white px-4">
-                  <h1 className="text-5xl sm:text-6xl font-bold mb-4">
+                  <h1 className="text-5xl sm:text-7xl  font-bold mb-4">
                     Welcome to Our Website
                   </h1>
                   <p className="text-2xl sm:text-3xl">
@@ -53,7 +53,7 @@ const Home = () => {
         >
           {bannerImages.map((item) => {
             return (
-              <div key={item} className="relative">
+              <div key={item} className="relative z-1">
                 <img
                   className="h-[30vh] sm:h-[50vh] md:h-[70vh]"
                   src={item}

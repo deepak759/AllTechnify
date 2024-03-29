@@ -44,8 +44,8 @@ export default function SignIn() {
    
   };
   return (
-    <div className="login-box mt-80">
-      <h2>Login</h2>
+    <div className="login-box mt-80 sm:w-[500px]">
+      <h2 className="font-bold text-3xl">LOGIN</h2>
       <form onSubmit={handleSubmit}>
         <div className="user-box">
           <input
@@ -75,7 +75,7 @@ export default function SignIn() {
             <span></span>
             <span></span>
             <span></span>
-          {loading?'Loading...' : 'SignUp'}
+          {loading?'Loading...' : 'LogIn'}
           </button>
           <p className="login-text">
             Not have an Account ?{" "}

@@ -47,8 +47,8 @@ export default function DetailProduct() {
     }, 3000);
 
     return () => clearInterval(intervalId);
-  }, []);
-console.log(products)
+  });
+
 
 
 const handleBuy = async () => {

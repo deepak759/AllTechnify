@@ -50,8 +50,8 @@ export default function Header() {
     };
   }, []);
   return (
-    <div className=" ">
-      <div className="lg:hidden z-10 flex justify-between items-center p-2 bg-[#1f2937] text-white">
+    <div className="">
+      <div className="lg:hidden  flex justify-between items-center p-2 bg-[#1f2937] text-white">
         <div className="flex items-center">
           <div className="flex  items-center font-bold">
             <img src="/Applogo.png" className="h-10 pb-1" alt="logo" />
@@ -80,7 +80,7 @@ export default function Header() {
             &#9776;
           </button>
           {menuOpen && (
-            <div className="lg:hidden w-[80%] h-[80%] z-10  absolute top-14 left-0 bg-[#263447] text-white p-2">
+            <div className="lg:hidden w-[80%] h-[80%] z-20  absolute top-14 left-0 bg-[#263447] text-white p-2">
               <nav>
                 <ul className="flex flex-col text-2xl text-gray-300 space-y-8 list-none items-left m-8 p-0">
                   <li className="mb-2">
