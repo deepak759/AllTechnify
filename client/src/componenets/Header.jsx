@@ -36,7 +36,7 @@ export default function Header() {
         dispatch(logOutUserFail(data.message))
       }
       dispatch(logOutUserSuccess());
-      
+     
       navigate('/')
     } catch (error) {
       dispatch(logOutUserFail(error));
@@ -68,7 +68,7 @@ export default function Header() {
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search Blogs, Posts, Users..."
-              className="p-1 px-4 rounded-full mx-4 bg-[#374151] w-full"
+              className="p-1  px-4 rounded-full mx-auto  bg-[#374151] w-[80%]"
             />
           </div>
         </form>
