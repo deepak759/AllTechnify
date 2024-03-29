@@ -21,7 +21,7 @@ export default function ShowProducts() {
     };
     getData();
   }, []);
-console.log(products)
+ 
   return (
     <div className="flex justify-center">
       {!error ? (

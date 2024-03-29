@@ -58,7 +58,7 @@ export default function RecommendList({ text, item, type }) {
       >
         <div
           style={{ display: "flex", flexDirection: "row", flexWrap: "nowrap" }}
-          className="gap-x-4"
+          className="gap-x-2"
         >
           {item.map((items, index) => (
             <div
@@ -67,6 +67,7 @@ export default function RecommendList({ text, item, type }) {
                 flex: "0 0 auto",
                 cursor: hoveredIndex === index ? "grabbing" : "grab",
               }}
+              className=""
               onMouseDown={handleMouseDown}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}

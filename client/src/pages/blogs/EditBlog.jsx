@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import {
   getDownloadURL,
@@ -86,7 +87,7 @@ export default function EditProduct() {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(progress);
+       
         },
 
         (error) => {
@@ -115,7 +116,7 @@ export default function EditProduct() {
       });
       const data = await res.json();
       setSubmitLoading(false);
-      console.log(data);
+      
       if (data.success === false) {
         setUploadImageError(data.message);
       }
@@ -131,7 +132,7 @@ export default function EditProduct() {
       imageURLs: formData.imageURLs.filter((_, i) => i != index),
     });
   };
-  console.log(formData);
+ 
   return (
     <form onSubmit={handleSubmit} className="">
       <div className="flex flex-col md:flex-row mt-4 justify-center md:gap-x-7 text-white mb-20">

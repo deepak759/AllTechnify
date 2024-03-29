@@ -36,7 +36,7 @@ export default function Header() {
         dispatch(logOutUserFail(data.message))
       }
       dispatch(logOutUserSuccess());
-      alert('user logout succefully')
+      
       navigate('/')
     } catch (error) {
       dispatch(logOutUserFail(error));
@@ -114,19 +114,21 @@ export default function Header() {
                   </li>
                   <li className="mb-2">
                     {currentUser ? (
-                      <div className="">
+                      <div className=" ">
                       <button
                       onClick={handleLogOut}
-                      className="mr-4 hover:bg-gray-700 transition p-2 px-4 rounded bg-black"
+                      className="no-underline hover:underline mb-6"
                     >
                       Logout
                     </button>
+                    <br />
                       <Link
                         to="/profile"
-                        className="no-underline hover:underline "
+                        className="no-underline hover:underline  "
                       >
                         Go to Profile
                       </Link>
+                      
                       </div>
                     ) : (
                       <Link

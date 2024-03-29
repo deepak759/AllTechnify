@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
     "@stripe/stripe-js": "^3.0.7",
+    "digitalmarketplace": "file:..",
     "firebase": "^10.8.1",
     "framer-motion": "^11.0.8",
     "react": "^18.2.0",

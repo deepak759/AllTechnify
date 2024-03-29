@@ -29,7 +29,7 @@ export default function SignIn() {
         body: JSON.stringify(formdata)
       });
       const data=await res.json();
- console.log(data)
+
       if(data.success===false){
       dispatch(signInFail(data.message))
       console.log(error)
