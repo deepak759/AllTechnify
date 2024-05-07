@@ -11,7 +11,7 @@ import PrivateRoute from './componenets/PrivateRote.jsx';
 import EditProduct from './pages/products/EditProduct.jsx';
 import EditBlog from './pages/blogs/EditBlog.jsx';
 import Header from './componenets/Header.jsx';
-import Footer from './componenets/Footer.jsx';
+
 import ShowBlogs from './pages/blogs/ShowBlogs.jsx';
 import ShowProducts from './pages/products/ShowProducts.jsx';
 import ReadBlog from './pages/blogs/ReadBlog.jsx';
@@ -48,7 +48,7 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
-      <Footer/>
+
     </BrowserRouter>
    
   
